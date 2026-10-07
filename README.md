@@ -1,44 +1,74 @@
-# Sagebrush - VS Code Theme
+<p align="center">
+  <img src="images/icon.png" width="128" alt="Sagebrush icon">
+</p>
 
-A warm, organic, and comfortable dark color theme for Visual Studio Code, inspired by the soothing earth-toned palettes used by modern chat interfaces like ChatGPT. Designed to reduce eye strain using soft greens, warm backgrounds, and muted syntax highlights.
+<h1 align="center">Sagebrush</h1>
 
-## 🌟 Features
+<p align="center">A calm, earthy dark theme for VS Code, inspired by <a href="https://github.com/sainnhe/everforest">Everforest</a>.</p>
 
-* **Eye-Friendly Canvas:** Soft, dark-medium green background (`#2d353b`) that eliminates harsh contrast.
-* **Modern Palette:** Vibrant but carefully muted syntax highlighting for HTML, CSS, JavaScript, Python, and more.
-* **Highly Readable UI:** Clearly distinguished sidebars, status bars, and active tabs for easy workspace navigation.
+---
 
-## 🚀 How to Install
+![Code preview](images/preview-code.png)
 
-### Option 1: Manual Installation (Recommended)
-1. Go to the [Releases](https://github.com/sgxtract/sagebrush-vscode-theme/releases) page of this repository.
-2. Download the latest `.vsix` file (e.g., `sagebrush-theme-0.0.1.vsix`).
-3. Open Visual Studio Code.
-4. Open the Extensions View (`Ctrl+Shift+X` or `Cmd+Shift+X`).
-5. Click the `...` (More Actions) button in the top right corner of the extension panel.
-6. Select **Install from VSIX...** and choose the downloaded file.
+![Markdown preview](images/preview-markdown.png)
 
-### Option 2: Clone and Run Locally
-If you want to tweak or edit the source code:
-1. Clone this repository:
-   ```bash
-   git clone https://github.com
-   ```
-2. Open the folder in VS Code:
-   ```bash
-   cd sagebrush-theme
-   code .
-   ```
-3. Press `F5` to open an Extension Development Host window to test the theme live.
+## Features
 
-## 🎨 Theme Preview
+- Soft forest-gray background with a sage-green accent
+- Syntax colors spaced apart so strings, functions, numbers, and keywords are easy to tell apart
+- Full Markdown styling: headings, bold, italic, inline code, links, quotes, lists, and code fences
+- Matching integrated terminal colors
+- Bracket pair colorization and git decoration colors
 
-* **Background:** `#2d353b` (Sagebrush Dark Medium)
-* **Sidebar:** `#232a2e`
-* **Keywords:** Soft Muted Red (`#e67e80`)
-* **Strings:** Forest Green (`#a7c080`)
-* **Functions:** Soft Aqua (`#83c092`)
+## Installation
 
-## 📄 License
+### From a release
 
-This project is open-source and available under the [MIT License](LICENSE).
+1. Download the latest `.vsix` file from the [Releases](https://github.com/sgxtract/sagebrush-theme/releases) page.
+2. In VS Code, open the Extensions view, click the `...` menu, and choose **Install from VSIX...**
+3. Select the downloaded file.
+4. Open the Command Palette (`Ctrl+Shift+P`), run **Preferences: Color Theme**, and pick **Sagebrush**.
+
+### From source
+
+```bash
+git clone https://github.com/sgxtract/sagebrush-theme.git
+cd sagebrush-theme
+npx @vscode/vsce package
+code --install-extension sagebrush-theme-*.vsix
+```
+
+## Palette
+
+| Color | Hex | Used for |
+|---|---|---|
+| Background | `#2d353b` | Editor |
+| Panels | `#232a2e` | Sidebar, tabs, terminal |
+| Foreground | `#d3c6aa` | Text, variables |
+| Comments | `#859289` | Comments |
+| Green (accent) | `#b3c76e` | Strings, UI accent |
+| Sage | `#8faa7c` | Markdown inline code |
+| Teal | `#70c4ae` | Functions, regex |
+| Blue | `#80b1da` | Types, JSON keys, links |
+| Yellow | `#ebc35e` | Numbers, constants, attributes |
+| Orange | `#efa072` | Properties |
+| Purple | `#d99ec6` | Keywords, tags, headings |
+| Red | `#f57a7a` | `this`, decorators, errors |
+
+## Recommended settings
+
+```json
+{
+  "editor.fontFamily": "'JetBrains Mono', monospace",
+  "editor.fontLigatures": true,
+  "editor.bracketPairColorization.enabled": true
+}
+```
+
+## Credits
+
+Color palette based on [Everforest](https://github.com/sainnhe/everforest) by sainnhe. Sagebrush is an independent theme and is not affiliated with the Everforest project.
+
+## License
+
+[MIT](LICENSE)

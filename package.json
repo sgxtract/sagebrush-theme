@@ -1,24 +1,28 @@
 {
   "name": "sagebrush-theme",
-  "displayName": "Sagebrush Theme",
-  "description": "A warm, comfortable green-based dark theme.",
-  "version": "0.1.2",
+  "displayName": "Sagebrush",
+  "description": "A calm, earthy dark theme with clearly separated syntax colors, inspired by Everforest",
+  "version": "0.2.0",
+  "publisher": "sgxtract",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#232a2e",
+    "theme": "dark"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sgxtract/sagebrush-vscode-theme.git"
+    "url": "https://github.com/sgxtract/sagebrush-theme"
   },
-  "engines": {
-    "vscode": "^1.138.0"
-  },
-  "categories": [
-    "Themes"
-  ],
+  "keywords": ["theme", "dark theme", "everforest", "green", "markdown"],
+  "engines": { "vscode": "^1.140.0" },
+  "categories": ["Themes"],
   "contributes": {
     "themes": [
       {
         "label": "Sagebrush",
         "uiTheme": "vs-dark",
-        "path": "./themes/Sagebrush-color-theme.json"
+        "path": "./themes/sagebrush-color-theme.json"
       }
     ]
   }

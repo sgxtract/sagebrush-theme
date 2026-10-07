@@ -1,0 +1,1097 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 1bf800f..339be3f 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,9 +1,29 @@
+-# Change Log
++# Changelog
+ 
+-All notable changes to the "sagebrush-theme" extension will be documented in this file.
++## [0.2.0] - 2026-10-07
+ 
+-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
++### Changed
+ 
+-## [Unreleased]
++- Reworked the palette so neighboring syntax colors are easier to tell apart, while keeping the original background and foreground
++- Keywords, tags, and Markdown headings are now purple; `this`, decorators, and errors use a clearer red
++- Strings, functions, and numbers nudged apart (green, teal, and gold)
++- Added blue for types and links, and orange for properties
++
++### Added
++
++- Full workbench colors: tabs, panels, widgets, inputs, buttons, notifications, and git decorations
++- Integrated terminal colors and bracket pair colors
++- Full Markdown styling: bold, italic, inline code, links, quotes, lists, and code fences
++- Extension icon
++
++## [0.1.2] - 2026-09-23
++
++- Changed Markdown heading color
++
++## [0.1.1] - 2026-09-23
++
++- Updated theme colors and added repository URL
++
++## [0.1.0] - 2026-09-23
+ 
+ - Initial release
+diff --git a/README.md b/README.md
+index cf54331..38bd3d1 100644
+--- a/README.md
++++ b/README.md
+@@ -1,44 +1,74 @@
+-# Sagebrush - VS Code Theme
+-
+-A warm, organic, and comfortable dark color theme for Visual Studio Code, inspired by the soothing earth-toned palettes used by modern chat interfaces like ChatGPT. Designed to reduce eye strain using soft greens, warm backgrounds, and muted syntax highlights.
+-
+-## 🌟 Features
+-
+-* **Eye-Friendly Canvas:** Soft, dark-medium green background (`#2d353b`) that eliminates harsh contrast.
+-* **Modern Palette:** Vibrant but carefully muted syntax highlighting for HTML, CSS, JavaScript, Python, and more.
+-* **Highly Readable UI:** Clearly distinguished sidebars, status bars, and active tabs for easy workspace navigation.
+-
+-## 🚀 How to Install
+-
+-### Option 1: Manual Installation (Recommended)
+-1. Go to the [Releases](https://github.com/sgxtract/sagebrush-vscode-theme/releases) page of this repository.
+-2. Download the latest `.vsix` file (e.g., `sagebrush-theme-0.0.1.vsix`).
+-3. Open Visual Studio Code.
+-4. Open the Extensions View (`Ctrl+Shift+X` or `Cmd+Shift+X`).
+-5. Click the `...` (More Actions) button in the top right corner of the extension panel.
+-6. Select **Install from VSIX...** and choose the downloaded file.
+-
+-### Option 2: Clone and Run Locally
+-If you want to tweak or edit the source code:
+-1. Clone this repository:
+-   ```bash
+-   git clone https://github.com
+-   ```
+-2. Open the folder in VS Code:
+-   ```bash
+-   cd sagebrush-theme
+-   code .
+-   ```
+-3. Press `F5` to open an Extension Development Host window to test the theme live.
+-
+-## 🎨 Theme Preview
+-
+-* **Background:** `#2d353b` (Sagebrush Dark Medium)
+-* **Sidebar:** `#232a2e`
+-* **Keywords:** Soft Muted Red (`#e67e80`)
+-* **Strings:** Forest Green (`#a7c080`)
+-* **Functions:** Soft Aqua (`#83c092`)
+-
+-## 📄 License
+-
+-This project is open-source and available under the [MIT License](LICENSE).
++<p align="center">
++  <img src="images/icon.png" width="128" alt="Sagebrush icon">
++</p>
++
++<h1 align="center">Sagebrush</h1>
++
++<p align="center">A calm, earthy dark theme for VS Code, inspired by <a href="https://github.com/sainnhe/everforest">Everforest</a>.</p>
++
++---
++
++![Code preview](images/preview-code.png)
++
++![Markdown preview](images/preview-markdown.png)
++
++## Features
++
++- Soft forest-gray background with a sage-green accent
++- Syntax colors spaced apart so strings, functions, numbers, and keywords are easy to tell apart
++- Full Markdown styling: headings, bold, italic, inline code, links, quotes, lists, and code fences
++- Matching integrated terminal colors
++- Bracket pair colorization and git decoration colors
++
++## Installation
++
++### From a release
++
++1. Download the latest `.vsix` file from the [Releases](https://github.com/sgxtract/sagebrush-theme/releases) page.
++2. In VS Code, open the Extensions view, click the `...` menu, and choose **Install from VSIX...**
++3. Select the downloaded file.
++4. Open the Command Palette (`Ctrl+Shift+P`), run **Preferences: Color Theme**, and pick **Sagebrush**.
++
++### From source
++
++```bash
++git clone https://github.com/sgxtract/sagebrush-theme.git
++cd sagebrush-theme
++npx @vscode/vsce package
++code --install-extension sagebrush-theme-*.vsix
++```
++
++## Palette
++
++| Color | Hex | Used for |
++|---|---|---|
++| Background | `#2d353b` | Editor |
++| Panels | `#232a2e` | Sidebar, tabs, terminal |
++| Foreground | `#d3c6aa` | Text, variables |
++| Comments | `#859289` | Comments |
++| Green (accent) | `#b3c76e` | Strings, UI accent |
++| Sage | `#8faa7c` | Markdown inline code |
++| Teal | `#70c4ae` | Functions, regex |
++| Blue | `#80b1da` | Types, JSON keys, links |
++| Yellow | `#ebc35e` | Numbers, constants, attributes |
++| Orange | `#efa072` | Properties |
++| Purple | `#d99ec6` | Keywords, tags, headings |
++| Red | `#f57a7a` | `this`, decorators, errors |
++
++## Recommended settings
++
++```json
++{
++  "editor.fontFamily": "'JetBrains Mono', monospace",
++  "editor.fontLigatures": true,
++  "editor.bracketPairColorization.enabled": true
++}
++```
++
++## Credits
++
++Color palette based on [Everforest](https://github.com/sainnhe/everforest) by sainnhe. Sagebrush is an independent theme and is not affiliated with the Everforest project.
++
++## License
++
++[MIT](LICENSE)
+diff --git a/images/icon.png b/images/icon.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..61ef501cd0f7d6ca045c2c0a89ec0ce1de763889
+GIT binary patch
+literal 17332
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/package.json b/package.json
+index 6c26c91..dfaedf3 100644
+--- a/package.json
++++ b/package.json
+@@ -1,24 +1,28 @@
+ {
+   "name": "sagebrush-theme",
+-  "displayName": "Sagebrush Theme",
+-  "description": "A warm, comfortable green-based dark theme.",
+-  "version": "0.1.2",
++  "displayName": "Sagebrush",
++  "description": "A calm, earthy dark theme with clearly separated syntax colors, inspired by Everforest",
++  "version": "0.2.0",
++  "publisher": "sgxtract",
++  "license": "MIT",
++  "icon": "images/icon.png",
++  "galleryBanner": {
++    "color": "#232a2e",
++    "theme": "dark"
++  },
+   "repository": {
+     "type": "git",
+-    "url": "https://github.com/sgxtract/sagebrush-vscode-theme.git"
+-  },
+-  "engines": {
+-    "vscode": "^1.138.0"
++    "url": "https://github.com/sgxtract/sagebrush-theme"
+   },
+-  "categories": [
+-    "Themes"
+-  ],
++  "keywords": ["theme", "dark theme", "everforest", "green", "markdown"],
++  "engines": { "vscode": "^1.140.0" },
++  "categories": ["Themes"],
+   "contributes": {
+     "themes": [
+       {
+         "label": "Sagebrush",
+         "uiTheme": "vs-dark",
+-        "path": "./themes/Sagebrush-color-theme.json"
++        "path": "./themes/sagebrush-color-theme.json"
+       }
+     ]
+   }
+diff --git a/themes/Sagebrush-color-theme.json b/themes/Sagebrush-color-theme.json
+deleted file mode 100644
+index 0a38f32..0000000
+--- a/themes/Sagebrush-color-theme.json
++++ /dev/null
+@@ -1,70 +0,0 @@
+-{
+-  "name": "Sagebrush",
+-  "type": "dark",
+-  "colors": {
+-    // Workbench core UI surfaces
+-    "editor.background": "#2d353b",
+-    "editor.foreground": "#d3c6aa",
+-    "sideBar.background": "#232a2e",
+-    "sideBar.foreground": "#9da9a0",
+-    "activityBar.background": "#232a2e",
+-    "activityBar.foreground": "#d3c6aa",
+-    "statusBar.background": "#232a2e",
+-    "statusBar.foreground": "#d3c6aa",
+-    "titleBar.activeBackground": "#2d353b",
+-    "titleBar.activeForeground": "#d3c6aa",
+-    
+-    // UI Highlights & Selections
+-    "editor.selectionBackground": "#475258",
+-    "editor.lineHighlightBackground": "#343f44",
+-    "list.activeSelectionBackground": "#3c4841",
+-    "list.activeSelectionForeground": "#a7c080"
+-  },
+-  "tokenColors": [
+-    {
+-      "name": "Keywords & Control",
+-      "scope": ["keyword", "storage.type", "storage.modifier"],
+-      "settings": { "foreground": "#e67e80" } // Muted Soft Red
+-    },
+-    {
+-      "name": "Strings & Character data",
+-      "scope": ["string", "punctuation.definition.string"],
+-      "settings": { "foreground": "#a7c080" } // Sagebrush Green
+-    },
+-    {
+-      "name": "Functions & Methods",
+-      "scope": ["entity.name.function", "support.function"],
+-      "settings": { "foreground": "#83c092" } // Soft Teal/Aqua
+-    },
+-    {
+-      "name": "Variables & Parameters",
+-      "scope": ["variable", "meta.parameter"],
+-      "settings": { "foreground": "#d3c6aa" } // Warm Foregound White
+-    },
+-    {
+-      "name": "Numbers & Booleans",
+-      "scope": ["constant.numeric", "constant.language"],
+-      "settings": { "foreground": "#dbbc7f" } // Soft Amber/Yellow
+-    },
+-    {
+-      "name": "Comments",
+-      "scope": ["comment", "punctuation.definition.comment"],
+-      "settings": { "foreground": "#859289", "fontStyle": "italic" }
+-    },
+-    {
+-      "name": "Markdown Headings",
+-      "scope": ["heading.markdown", "punctuation.definition.heading.markdown"],
+-      "settings": { "foreground": "#e67e80", "fontStyle": "bold" } // Matches your Muted Soft Red
+-    },
+-    {
+-      "name": "Markdown Bold",
+-      "scope": ["markup.bold.markdown", "punctuation.definition.bold.markdown"],
+-      "settings": { "foreground": "#a7c080", "fontStyle": "bold" } // Matches your Soft Teal/Aqua
+-    },
+-    {
+-      "name": "Markdown Italic",
+-      "scope": ["markup.italic.markdown", "punctuation.definition.italic.markdown"],
+-      "settings": { "foreground": "#a7c080", "fontStyle": "italic" } // Matches your Soft Amber/Yellow
+-    }
+-  ]
+-}
+diff --git a/themes/sagebrush-color-theme.json b/themes/sagebrush-color-theme.json
+new file mode 100644
+index 0000000..6a98da5
+--- /dev/null
++++ b/themes/sagebrush-color-theme.json
+@@ -0,0 +1,472 @@
++{
++	"$schema": "vscode://schemas/color-theme",
++	"name": "Sagebrush",
++	"type": "dark",
++	"semanticHighlighting": true,
++	"colors": {
++		"foreground": "#d3c6aa",
++		"descriptionForeground": "#9da9a0",
++		"disabledForeground": "#7a8478",
++		"errorForeground": "#f57a7a",
++		"focusBorder": "#b3c76e80",
++		"selection.background": "#475258",
++		"widget.shadow": "#00000060",
++		"icon.foreground": "#9da9a0",
++		"textLink.foreground": "#80b1da",
++		"textLink.activeForeground": "#93c1e6",
++		"textBlockQuote.background": "#232a2e",
++		"textBlockQuote.border": "#b3c76e",
++		"textCodeBlock.background": "#232a2e",
++		"textPreformat.foreground": "#8faa7c",
++		"textSeparator.foreground": "#475258",
++
++		"editor.background": "#2d353b",
++		"editor.foreground": "#d3c6aa",
++		"editorCursor.foreground": "#d3c6aa",
++		"editor.lineHighlightBackground": "#343f44",
++		"editor.lineHighlightBorder": "#00000000",
++		"editor.selectionBackground": "#475258",
++		"editor.inactiveSelectionBackground": "#3d484d",
++		"editor.selectionHighlightBackground": "#47525880",
++		"editor.wordHighlightBackground": "#47525880",
++		"editor.wordHighlightStrongBackground": "#475258",
++		"editor.findMatchBackground": "#ebc35e40",
++		"editor.findMatchHighlightBackground": "#ebc35e20",
++		"editor.findRangeHighlightBackground": "#3d484d80",
++		"editor.rangeHighlightBackground": "#3d484d80",
++		"editorLineNumber.foreground": "#56635f",
++		"editorLineNumber.activeForeground": "#9da9a0",
++		"editorWhitespace.foreground": "#475258",
++		"editorIndentGuide.background1": "#3d484d",
++		"editorIndentGuide.activeBackground1": "#56635f",
++		"editorRuler.foreground": "#3d484d",
++		"editorBracketMatch.background": "#475258",
++		"editorBracketMatch.border": "#7a8478",
++		"editorBracketHighlight.foreground1": "#ebc35e",
++		"editorBracketHighlight.foreground2": "#d99ec6",
++		"editorBracketHighlight.foreground3": "#80b1da",
++		"editorBracketHighlight.foreground4": "#70c4ae",
++		"editorBracketHighlight.foreground5": "#b3c76e",
++		"editorBracketHighlight.foreground6": "#efa072",
++		"editorBracketHighlight.unexpectedBracket.foreground": "#f57a7a",
++		"editorError.foreground": "#f57a7a",
++		"editorWarning.foreground": "#ebc35e",
++		"editorInfo.foreground": "#80b1da",
++		"editorHint.foreground": "#70c4ae",
++		"editorLink.activeForeground": "#93c1e6",
++		"editorGutter.background": "#2d353b",
++		"editorGutter.addedBackground": "#b3c76e",
++		"editorGutter.modifiedBackground": "#80b1da",
++		"editorGutter.deletedBackground": "#f57a7a",
++		"editorOverviewRuler.border": "#00000000",
++		"editorOverviewRuler.errorForeground": "#f57a7a",
++		"editorOverviewRuler.warningForeground": "#ebc35e",
++		"editorOverviewRuler.infoForeground": "#80b1da",
++		"editorCodeLens.foreground": "#7a8478",
++		"editorInlayHint.background": "#343f44",
++		"editorInlayHint.foreground": "#7a8478",
++		"editorGhostText.foreground": "#7a8478",
++
++		"editorWidget.background": "#343f44",
++		"editorWidget.border": "#3d484d",
++		"editorHoverWidget.background": "#343f44",
++		"editorHoverWidget.border": "#3d484d",
++		"editorSuggestWidget.background": "#343f44",
++		"editorSuggestWidget.border": "#3d484d",
++		"editorSuggestWidget.selectedBackground": "#475258",
++		"editorSuggestWidget.highlightForeground": "#b3c76e",
++		"editorSuggestWidget.focusHighlightForeground": "#c2d57e",
++		"peekView.border": "#b3c76e",
++		"peekViewEditor.background": "#232a2e",
++		"peekViewResult.background": "#343f44",
++		"peekViewTitle.background": "#343f44",
++		"peekViewEditor.matchHighlightBackground": "#ebc35e40",
++		"peekViewResult.matchHighlightBackground": "#ebc35e40",
++		"peekViewResult.selectionBackground": "#475258",
++
++		"activityBar.background": "#232a2e",
++		"activityBar.foreground": "#d3c6aa",
++		"activityBar.inactiveForeground": "#7a8478",
++		"activityBar.border": "#00000000",
++		"activityBar.activeBorder": "#b3c76e",
++		"activityBarBadge.background": "#b3c76e",
++		"activityBarBadge.foreground": "#232a2e",
++
++		"sideBar.background": "#232a2e",
++		"sideBar.foreground": "#9da9a0",
++		"sideBar.border": "#00000000",
++		"sideBarTitle.foreground": "#d3c6aa",
++		"sideBarSectionHeader.background": "#232a2e",
++		"sideBarSectionHeader.foreground": "#d3c6aa",
++		"sideBarSectionHeader.border": "#343f44",
++
++		"list.activeSelectionBackground": "#3c4841",
++		"list.activeSelectionForeground": "#b3c76e",
++		"list.inactiveSelectionBackground": "#343f44",
++		"list.hoverBackground": "#2d353b",
++		"list.focusOutline": "#00000000",
++		"list.highlightForeground": "#b3c76e",
++		"list.errorForeground": "#f57a7a",
++		"list.warningForeground": "#ebc35e",
++
++		"editorGroupHeader.tabsBackground": "#232a2e",
++		"editorGroupHeader.tabsBorder": "#00000000",
++		"editorGroup.border": "#343f44",
++		"tab.activeBackground": "#2d353b",
++		"tab.activeForeground": "#d3c6aa",
++		"tab.activeBorderTop": "#b3c76e",
++		"tab.inactiveBackground": "#232a2e",
++		"tab.inactiveForeground": "#7a8478",
++		"tab.hoverBackground": "#2d353b",
++		"tab.border": "#00000000",
++		"tab.unfocusedActiveForeground": "#9da9a0",
++		"tab.unfocusedActiveBorderTop": "#56635f",
++		"breadcrumb.foreground": "#7a8478",
++		"breadcrumb.focusForeground": "#d3c6aa",
++		"breadcrumb.activeSelectionForeground": "#b3c76e",
++
++		"titleBar.activeBackground": "#232a2e",
++		"titleBar.activeForeground": "#9da9a0",
++		"titleBar.inactiveBackground": "#232a2e",
++		"titleBar.inactiveForeground": "#7a8478",
++		"titleBar.border": "#00000000",
++
++		"statusBar.background": "#232a2e",
++		"statusBar.foreground": "#9da9a0",
++		"statusBar.border": "#00000000",
++		"statusBar.debuggingBackground": "#efa072",
++		"statusBar.debuggingForeground": "#232a2e",
++		"statusBar.noFolderBackground": "#232a2e",
++		"statusBarItem.hoverBackground": "#343f44",
++		"statusBarItem.remoteBackground": "#b3c76e",
++		"statusBarItem.remoteForeground": "#232a2e",
++		"statusBarItem.errorBackground": "#f57a7a",
++		"statusBarItem.errorForeground": "#232a2e",
++
++		"panel.background": "#232a2e",
++		"panel.border": "#343f44",
++		"panelTitle.activeForeground": "#d3c6aa",
++		"panelTitle.activeBorder": "#b3c76e",
++		"panelTitle.inactiveForeground": "#7a8478",
++
++		"input.background": "#2d353b",
++		"input.foreground": "#d3c6aa",
++		"input.border": "#3d484d",
++		"input.placeholderForeground": "#7a8478",
++		"inputOption.activeBorder": "#b3c76e",
++		"inputValidation.errorBorder": "#f57a7a",
++		"inputValidation.warningBorder": "#ebc35e",
++		"inputValidation.infoBorder": "#80b1da",
++		"dropdown.background": "#2d353b",
++		"dropdown.border": "#3d484d",
++		"dropdown.foreground": "#d3c6aa",
++		"quickInput.background": "#2d353b",
++		"quickInputList.focusBackground": "#3c4841",
++		"pickerGroup.foreground": "#b3c76e",
++		"pickerGroup.border": "#3d484d",
++
++		"button.background": "#b3c76e",
++		"button.foreground": "#232a2e",
++		"button.hoverBackground": "#c2d57e",
++		"button.secondaryBackground": "#3d484d",
++		"button.secondaryForeground": "#d3c6aa",
++		"button.secondaryHoverBackground": "#475258",
++		"badge.background": "#b3c76e",
++		"badge.foreground": "#232a2e",
++		"progressBar.background": "#b3c76e",
++		"checkbox.background": "#2d353b",
++		"checkbox.border": "#3d484d",
++
++		"scrollbar.shadow": "#00000000",
++		"scrollbarSlider.background": "#47525860",
++		"scrollbarSlider.hoverBackground": "#475258a0",
++		"scrollbarSlider.activeBackground": "#56635f",
++
++		"notifications.background": "#343f44",
++		"notifications.border": "#3d484d",
++		"notificationCenterHeader.background": "#232a2e",
++		"notificationsErrorIcon.foreground": "#f57a7a",
++		"notificationsWarningIcon.foreground": "#ebc35e",
++		"notificationsInfoIcon.foreground": "#80b1da",
++
++		"gitDecoration.addedResourceForeground": "#b3c76e",
++		"gitDecoration.modifiedResourceForeground": "#80b1da",
++		"gitDecoration.deletedResourceForeground": "#f57a7a",
++		"gitDecoration.untrackedResourceForeground": "#70c4ae",
++		"gitDecoration.ignoredResourceForeground": "#56635f",
++		"gitDecoration.conflictingResourceForeground": "#d99ec6",
++		"diffEditor.insertedTextBackground": "#b3c76e20",
++		"diffEditor.removedTextBackground": "#f57a7a20",
++
++		"terminal.background": "#232a2e",
++		"terminal.foreground": "#d3c6aa",
++		"terminalCursor.foreground": "#d3c6aa",
++		"terminal.selectionBackground": "#475258",
++		"terminal.ansiBlack": "#3d484d",
++		"terminal.ansiRed": "#f57a7a",
++		"terminal.ansiGreen": "#b3c76e",
++		"terminal.ansiYellow": "#ebc35e",
++		"terminal.ansiBlue": "#80b1da",
++		"terminal.ansiMagenta": "#d99ec6",
++		"terminal.ansiCyan": "#70c4ae",
++		"terminal.ansiWhite": "#9da9a0",
++		"terminal.ansiBrightBlack": "#7a8478",
++		"terminal.ansiBrightRed": "#ff9090",
++		"terminal.ansiBrightGreen": "#c2d57e",
++		"terminal.ansiBrightYellow": "#f4d07a",
++		"terminal.ansiBrightBlue": "#93c1e6",
++		"terminal.ansiBrightMagenta": "#e4afd2",
++		"terminal.ansiBrightCyan": "#84d3be",
++		"terminal.ansiBrightWhite": "#d3c6aa"
++	},
++	"tokenColors": [
++		{
++			"name": "Comments",
++			"scope": ["comment", "punctuation.definition.comment"],
++			"settings": { "foreground": "#859289", "fontStyle": "italic" }
++		},
++		{
++			"name": "Keywords, storage",
++			"scope": ["keyword", "keyword.control", "storage.type", "storage.modifier"],
++			"settings": { "foreground": "#d99ec6" }
++		},
++		{
++			"name": "Operators, punctuation",
++			"scope": [
++				"keyword.operator",
++				"punctuation",
++				"punctuation.separator",
++				"punctuation.terminator",
++				"meta.brace"
++			],
++			"settings": { "foreground": "#9da9a0" }
++		},
++		{
++			"name": "Strings",
++			"scope": ["string", "punctuation.definition.string"],
++			"settings": { "foreground": "#b3c76e" }
++		},
++		{
++			"name": "Escapes, regex",
++			"scope": ["constant.character.escape", "string.regexp"],
++			"settings": { "foreground": "#70c4ae" }
++		},
++		{
++			"name": "Numbers, constants, booleans",
++			"scope": [
++				"constant.numeric",
++				"constant.language",
++				"constant.character",
++				"support.constant",
++				"keyword.other.unit",
++				"variable.other.enummember"
++			],
++			"settings": { "foreground": "#ebc35e" }
++		},
++		{
++			"name": "Functions",
++			"scope": [
++				"entity.name.function",
++				"support.function",
++				"meta.function-call",
++				"variable.function",
++				"variable.function.constructor"
++			],
++			"settings": { "foreground": "#70c4ae" }
++		},
++		{
++			"name": "Types, classes, namespaces",
++			"scope": [
++				"entity.name.type",
++				"entity.name.class",
++				"entity.name.namespace",
++				"entity.other.inherited-class",
++				"support.type",
++				"support.class"
++			],
++			"settings": { "foreground": "#80b1da" }
++		},
++		{
++			"name": "Variables",
++			"scope": ["variable", "variable.other", "string constant.other.placeholder"],
++			"settings": { "foreground": "#d3c6aa" }
++		},
++		{
++			"name": "Parameters",
++			"scope": ["variable.parameter", "meta.parameter"],
++			"settings": { "foreground": "#d3c6aa", "fontStyle": "italic" }
++		},
++		{
++			"name": "this, self, super",
++			"scope": ["variable.language"],
++			"settings": { "foreground": "#f57a7a", "fontStyle": "italic" }
++		},
++		{
++			"name": "Properties",
++			"scope": [
++				"variable.other.property",
++				"variable.other.object.property",
++				"support.variable.property",
++				"meta.object-literal.key"
++			],
++			"settings": { "foreground": "#efa072" }
++		},
++		{
++			"name": "HTML/JSX tags",
++			"scope": ["entity.name.tag", "meta.tag.sgml", "support.class.component"],
++			"settings": { "foreground": "#d99ec6" }
++		},
++		{
++			"name": "Tag brackets",
++			"scope": ["punctuation.definition.tag"],
++			"settings": { "foreground": "#7a8478" }
++		},
++		{
++			"name": "Attributes",
++			"scope": ["entity.other.attribute-name"],
++			"settings": { "foreground": "#ebc35e", "fontStyle": "italic" }
++		},
++		{
++			"name": "CSS property names",
++			"scope": ["support.type.property-name.css", "support.type.vendored.property-name.css"],
++			"settings": { "foreground": "#80b1da" }
++		},
++		{
++			"name": "CSS values",
++			"scope": ["support.constant.property-value.css", "support.constant.color"],
++			"settings": { "foreground": "#ebc35e" }
++		},
++		{
++			"name": "CSS class selectors",
++			"scope": ["entity.other.attribute-name.class.css"],
++			"settings": { "foreground": "#efa072", "fontStyle": "" }
++		},
++		{
++			"name": "CSS id selectors",
++			"scope": ["entity.other.attribute-name.id.css"],
++			"settings": { "foreground": "#70c4ae", "fontStyle": "" }
++		},
++		{
++			"name": "JSON keys",
++			"scope": ["support.type.property-name.json"],
++			"settings": { "foreground": "#80b1da" }
++		},
++		{
++			"name": "Decorators",
++			"scope": ["meta.decorator", "punctuation.decorator"],
++			"settings": { "foreground": "#f57a7a", "fontStyle": "italic" }
++		},
++		{
++			"name": "Invalid",
++			"scope": ["invalid", "invalid.illegal"],
++			"settings": { "foreground": "#ff9090" }
++		},
++		{
++			"name": "Diff inserted",
++			"scope": ["markup.inserted"],
++			"settings": { "foreground": "#b3c76e" }
++		},
++		{
++			"name": "Diff deleted",
++			"scope": ["markup.deleted"],
++			"settings": { "foreground": "#f57a7a" }
++		},
++		{
++			"name": "Diff changed",
++			"scope": ["markup.changed"],
++			"settings": { "foreground": "#ebc35e" }
++		},
++
++		{
++			"name": "Markdown - Headings",
++			"scope": [
++				"markup.heading",
++				"markup.heading entity.name.section.markdown",
++				"markup.heading.setext",
++				"heading.markdown",
++				"punctuation.definition.heading.markdown"
++			],
++			"settings": { "foreground": "#d99ec6", "fontStyle": "bold" }
++		},
++		{
++			"name": "Markdown - Bold",
++			"scope": ["markup.bold", "punctuation.definition.bold.markdown"],
++			"settings": { "foreground": "#ebc35e", "fontStyle": "bold" }
++		},
++		{
++			"name": "Markdown - Italic",
++			"scope": ["markup.italic", "punctuation.definition.italic.markdown"],
++			"settings": { "foreground": "#f57a7a", "fontStyle": "italic" }
++		},
++		{
++			"name": "Markdown - Bold italic",
++			"scope": ["markup.bold markup.italic", "markup.italic markup.bold"],
++			"settings": { "foreground": "#efa072", "fontStyle": "bold italic" }
++		},
++		{
++			"name": "Markdown - Strikethrough",
++			"scope": ["markup.strikethrough"],
++			"settings": { "foreground": "#9da9a0", "fontStyle": "strikethrough" }
++		},
++		{
++			"name": "Markdown - Inline code",
++			"scope": ["markup.inline.raw.string.markdown"],
++			"settings": { "foreground": "#8faa7c" }
++		},
++		{
++			"name": "Markdown - Inline code backticks",
++			"scope": ["punctuation.definition.raw.markdown"],
++			"settings": { "foreground": "#7a8478" }
++		},
++		{
++			"name": "Markdown - Code fence backticks",
++			"scope": ["punctuation.definition.markdown"],
++			"settings": { "foreground": "#7a8478" }
++		},
++		{
++			"name": "Markdown - Code fence language",
++			"scope": ["fenced_code.block.language.markdown", "fenced_code.block.language"],
++			"settings": { "foreground": "#70c4ae" }
++		},
++		{
++			"name": "Markdown - Indented code block",
++			"scope": ["markup.raw.block.markdown"],
++			"settings": { "foreground": "#8faa7c" }
++		},
++		{
++			"name": "Markdown - Link text",
++			"scope": ["string.other.link.title.markdown", "string.other.link.description.markdown"],
++			"settings": { "foreground": "#80b1da" }
++		},
++		{
++			"name": "Markdown - URLs",
++			"scope": ["markup.underline.link.markdown", "markup.underline.link.image.markdown"],
++			"settings": { "foreground": "#70c4ae", "fontStyle": "underline" }
++		},
++		{
++			"name": "Markdown - Reference links",
++			"scope": ["constant.other.reference.link.markdown"],
++			"settings": { "foreground": "#ebc35e" }
++		},
++		{
++			"name": "Markdown - Blockquote",
++			"scope": ["markup.quote.markdown"],
++			"settings": { "foreground": "#9da9a0", "fontStyle": "italic" }
++		},
++		{
++			"name": "Markdown - Blockquote marker",
++			"scope": ["punctuation.definition.quote.begin.markdown"],
++			"settings": { "foreground": "#7a8478" }
++		},
++		{
++			"name": "Markdown - List bullets",
++			"scope": ["punctuation.definition.list.begin.markdown"],
++			"settings": { "foreground": "#d99ec6" }
++		},
++		{
++			"name": "Markdown - Horizontal rule",
++			"scope": ["meta.separator.markdown"],
++			"settings": { "foreground": "#7a8478", "fontStyle": "bold" }
++		}
++	]
++}
